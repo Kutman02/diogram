@@ -9,8 +9,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#32CD32', // Ваш зеленый цвет для фона
-        secondary: '#F0F0F0', // Серый фон
+        primary: '#5181B8', // Синий цвет в стиле ВКонтакте
+        secondary: '#FFFFFF', // Белый цвет
       },
     },
   },

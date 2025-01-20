@@ -2,20 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Переменные для светлой и темной темы */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #ffffff; /* Светлый фон */
+  --foreground: #171717; /* Тёмный текст */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #7a2020;
-    --foreground: #000000;
+    --background: #7a2020; /* Темный фон (красноватый оттенок) */
+    --foreground: #000000; /* Черный текст */
   }
 }
 
+/* Глобальные стили для body */
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--foreground); /* Использование текста в зависимости от темы */
+  background: var(--background); /* Использование фона в зависимости от темы */
+  font-family: Arial, Helvetica, sans-serif; /* Общий шрифт */
 }
