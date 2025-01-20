@@ -1,7 +1,7 @@
 // src/app/layout.tsx
 import React from 'react';
 import './globals.css';
-import Header from '@/components/Header'; // Импортируем Header
+import Header from '@/components/Header';
 import Link from 'next/link';
 
 export const metadata = {
