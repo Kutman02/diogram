@@ -21,7 +21,16 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
         ☰
       </button>
       <Image src="/logo.png" alt="Лого" width={40} height={40} className="rounded-full" />
-      <span className="ml-4 text-white font-semibold text-lg">Кыр/Рус</span>
+      <span className="ml-4 text-white font-semibold text-lg"></span>
+      <div className="ml-4 relative">
+        <select
+          className="bg-white text-indigo-600 py-1 px-5 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 md:ml-4 appearance-none"
+          aria-label="Select language"
+          style={{ appearance: 'none', WebkitAppearance: 'none', MozAppearance: 'none' }}>
+          <option value="ky">Кыргызча</option>
+          <option value="ru">Русский</option>
+        </select>
+      </div>
 
       <div className="ml-auto flex items-center">
         {/* Кнопка профиля */}
@@ -36,10 +45,20 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
           className={`ml-4 text-white text-sm font-medium ${
             isProfileVisible ? 'block' : 'hidden'
           } md:block`}>
-          <div>Председатель районного суда:</div>
-          <div>Асанов Асан Асанович</div>
+          <div className="hidden md:block">Председатель районного суда:</div>
+          <div className="hidden md:block">Асанов Асан Асанович</div>
         </div>
       </div>
+
+      {/* Мобильное меню профиля */}
+      {isProfileVisible && (
+        <div className="absolute top-16 right-0 bg-white text-indigo-600 shadow-lg rounded-md p-4 md:hidden">
+          <div className="text-sm font-medium">
+            <div>Председатель районного суда:</div>
+            <div>Асанов Асан Асанович</div>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
