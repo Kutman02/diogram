@@ -23,7 +23,7 @@ export default function PeriodSelection() {
         <input
           type="number"
           className="col-span-4 sm:col-span-2 border border-gray-300 rounded px-2 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-          defaultValue="2025"
+          defaultValue={2025}
         />
       </div>
 
@@ -44,7 +44,7 @@ export default function PeriodSelection() {
       </div>
 
       {/* Месяцы */}
-      <div className="mt-6 grid grid-cols-3 sm:grid-cols-6 lg:grid-cols-14 gap-2">
+      <div className="mt-6 grid grid-cols-4 sm:grid-cols-8 lg:grid-cols-9 xl:grid-cols-6 gap-1">
         {[
           'январь',
           'февраль',
@@ -62,11 +62,11 @@ export default function PeriodSelection() {
           <button
             key={index}
             onClick={() => setActiveMonth(index)}
-            className={`border border-gray-300 px-3 py-2 rounded-lg text-sm sm:text-base ${
+            className={`border border-gray-300 px-4 py-2 rounded-lg text-sm sm:text-base ${
               activeMonth === index
                 ? 'bg-blue-100 border-blue-400 text-blue-700'
                 : 'bg-white text-gray-800'
-            } hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500`}>
+            } hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 sm:min-w-[8ch] sm:mr-4 mb-2 sm:mb-0`}>
             {month}
           </button>
         ))}

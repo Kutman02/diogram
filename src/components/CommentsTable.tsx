@@ -13,7 +13,7 @@ const CommentsTable = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [visibleActions, setVisibleActions] = useState<{ [key: number]: boolean }>({});
 
-  const itemsPerPage = 50;
+  const itemsPerPage = 35;
   const totalPages = Math.ceil(data.length / itemsPerPage);
 
   const currentData = useMemo(
@@ -44,8 +44,29 @@ const CommentsTable = () => {
   };
 
   const toggleActionVisibility = (id: number) => {
-    setVisibleActions((prev) => ({ ...prev, [id]: !prev[id] }));
+    setVisibleActions((prev) => {
+      const newVisibleActions = { ...prev, [id]: !prev[id] };
+      Object.keys(newVisibleActions).forEach((key) => {
+        if (parseInt(key) !== id) {
+          newVisibleActions[parseInt(key)] = false;
+        }
+      });
+      return newVisibleActions;
+    });
   };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (!(event.target as HTMLElement).closest('.action-menu')) {
+      setVisibleActions({});
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   if (isLoading) {
     return <p className="text-center text-gray-700">Загрузка данных...</p>;
@@ -76,7 +97,7 @@ const CommentsTable = () => {
                 <td className="border border-gray-300 px-2 py-2">{item.comment}</td>
                 <td className="border border-gray-300 px-2 py-2">{item.action}</td>
                 <td className="border border-gray-300 px-2 py-2 text-center">
-                  <div className="relative">
+                  <div className="relative action-menu">
                     <button
                       className="p-2 bg-gray-200 rounded focus:outline-none focus:ring md:hidden"
                       onClick={() => toggleActionVisibility(item.id)}
