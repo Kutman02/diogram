@@ -38,7 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </aside>
 
           {/* Main Content */}
-          <main className=" bg-gray-0  ml-0 md:ml-48 transition-all duration-300">{children}</main>
+          <main className=" bg-gray-0  ml-0 md:ml-4 transition-all duration-300">{children}</main>
         </div>
       </body>
     </html>

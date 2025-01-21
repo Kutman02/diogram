@@ -3,6 +3,8 @@
 'use client';
 import React from 'react';
 import PeriodSelection from '@/components/PeriodSelection';
+import CommentsTable from '@/components/CommentsTable';
+import Footer from '@/components/Footer';
 
 export default function SuggestionsPage() {
   return (
@@ -12,6 +14,8 @@ export default function SuggestionsPage() {
         Страница Замечания и предложения
       </h1>
       <PeriodSelection />
+      <CommentsTable />
+      <Footer />
     </div>
   );
 }
