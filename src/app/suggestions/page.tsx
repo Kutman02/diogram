@@ -4,7 +4,6 @@
 import React from 'react';
 import PeriodSelection from '@/components/PeriodSelection';
 import CommentsTable from '@/components/CommentsTable';
-import Footer from '@/components/Footer';
 
 export default function SuggestionsPage() {
   return (
@@ -15,7 +14,6 @@ export default function SuggestionsPage() {
       </h1>
       <PeriodSelection />
       <CommentsTable />
-      <Footer />
     </div>
   );
 }

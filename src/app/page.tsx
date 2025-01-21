@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import PeriodSelector from '@/components/PeriodSelection';
-import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
@@ -11,7 +10,6 @@ export default function Home() {
         Оценка деятельности районного суда за период
       </h1>
       <PeriodSelector />
-      <Footer />
     </div>
   );
 }

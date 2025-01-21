@@ -14,7 +14,7 @@ export default function PeriodSelection() {
           className="col-span-4 sm:col-span-3 border border-gray-300 rounded px-2 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
           defaultValue="2025-01-01"
         />
-        <span className="hidden sm:block col-span-1 text-center text-gray-600">По</span>
+        <span className="col-span-1 text-center text-gray-600">По</span>
         <input
           type="date"
           className="col-span-4 sm:col-span-3 border border-gray-300 rounded px-2 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
