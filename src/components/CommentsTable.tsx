@@ -55,19 +55,6 @@ const CommentsTable = () => {
     });
   };
 
-  const handleClickOutside = (event: MouseEvent) => {
-    if (!(event.target as HTMLElement).closest('.action-menu')) {
-      setVisibleActions({});
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
   if (isLoading) {
     return <p className="text-center text-gray-700">Загрузка данных...</p>;
   }
@@ -77,25 +64,29 @@ const CommentsTable = () => {
   }
 
   return (
-    <div className="p-4">
-      <div className="overflow-x-auto">
-        <table className="min-w-full border border-gray-200 text-sm text-left">
+    <div className="p-4 max-w-7xl mx-auto overflow-hidden">
+      <div className="overflow-hidden">
+        <table className="min-w-full w-full border border-gray-200 text-sm text-left">
           <thead>
-            <tr className="bg-gray-100 text-gray-700 uppercase">
+            <tr className="bg-gray-100 text-gray-700 uppercase text-xs sm:text-sm">
               <th className="border border-gray-300 px-2 py-2 text-center">№</th>
-              <th className="border border-gray-300 px-2 py-2">Замечания</th>
+              <th className="border border-gray-300 px-2 py-2">Замечания и предложения</th>
               <th className="border border-gray-300 px-2 py-2">Комментарии/Принятые меры</th>
               <th className="border border-gray-300 px-2 py-2 text-center">Действия</th>
             </tr>
           </thead>
           <tbody>
             {currentData.map((item, index) => (
-              <tr key={item.id} className="hover:bg-gray-50 even:bg-gray-50">
+              <tr key={item.id} className="hover:bg-gray-50 even:bg-gray-50 text-xs sm:text-sm">
                 <td className="border border-gray-300 px-2 py-2 text-center">
                   {(currentPage - 1) * itemsPerPage + index + 1}
                 </td>
-                <td className="border border-gray-300 px-2 py-2">{item.comment}</td>
-                <td className="border border-gray-300 px-2 py-2">{item.action}</td>
+                <td className="border border-gray-300 px-2 py-2 break-words max-w-xs sm:max-w-none">
+                  {item.comment}
+                </td>
+                <td className="border border-gray-300 px-2 py-2 break-words max-w-xs sm:max-w-none">
+                  {item.action}
+                </td>
                 <td className="border border-gray-300 px-2 py-2 text-center">
                   <div className="relative action-menu">
                     <button
@@ -125,33 +116,29 @@ const CommentsTable = () => {
           </tbody>
         </table>
       </div>
-
       <div className="flex justify-center items-center mt-4 gap-2 flex-wrap">
         <button
           className="px-3 py-1 bg-gray-200 text-gray-700 hover:bg-gray-300 rounded disabled:opacity-50 disabled:cursor-not-allowed"
           onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-          aria-label="Назад">
+          disabled={currentPage === 1}>
           Назад
         </button>
         {Array.from({ length: totalPages }, (_, index) => (
           <button
-            key={`page-${index + 1}`}
+            key={index}
             className={`px-3 py-1 rounded ${
               currentPage === index + 1
                 ? 'bg-blue-500 text-white'
                 : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
             }`}
-            onClick={() => handlePageChange(index + 1)}
-            aria-label={`Страница ${index + 1}`}>
+            onClick={() => handlePageChange(index + 1)}>
             {index + 1}
           </button>
         ))}
         <button
           className="px-3 py-1 bg-gray-200 text-gray-700 hover:bg-gray-300 rounded disabled:opacity-50 disabled:cursor-not-allowed"
           onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-          aria-label="Вперед">
+          disabled={currentPage === totalPages}>
           Вперед
         </button>
       </div>
