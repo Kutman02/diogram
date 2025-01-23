@@ -31,7 +31,10 @@ const Header: React.FC = () => {
   }, []);
 
   return (
-    <header className="h-16 flex items-center px-4 md:px-6 bg-blue-600 shadow-md relative z-10 w-full">
+    <header
+      className={`h-16 flex items-center px-4 md:px-6 bg-blue-600 shadow-md relative z-10 w-full ${
+        isSidebarOpen ? 'h-auto' : ''
+      }`}>
       {/* Burger button (mobile only) */}
       <button
         className="md:hidden text-white mr-4 hover:text-gray-200 transition duration-300"
@@ -43,7 +46,7 @@ const Header: React.FC = () => {
       {/* Logo */}
       <Image src="/logo.png" alt="Logo" width={40} height={40} className="mr-4" />
 
-      {/* Horizontal menu (desktop only) */}
+      {/* Horizontal menu */}
       <nav className="hidden md:flex space-x-6 text-sm text-white">
         <Link href="/" className="hover:bg-blue-700 p-2 rounded transition duration-300">
           Оценки
@@ -56,7 +59,8 @@ const Header: React.FC = () => {
       {/* Language selector */}
       <select
         className="ml-auto bg-blue-600 text-white py-1 px-3 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 md:mr-4 appearance-none"
-        aria-label="Select language">
+        aria-label="Select language"
+        defaultValue="ru">
         <option value="ky">Кыргызча</option>
         <option value="ru">Русский</option>
       </select>
@@ -80,28 +84,29 @@ const Header: React.FC = () => {
         )}
       </div>
 
-      {/* Sidebar (mobile only) */}
+      {/* Sidebar */}
       {isSidebarOpen && (
-        <aside
+        <div
           ref={sidebarRef}
-          className="fixed top-0 left-0 bg-white text-black w-64 h-full p-4 transition-transform duration-300 z-50 md:hidden">
-          <button
-            className="mb-4 text-black hover:text-gray-800"
-            onClick={() => setIsSidebarOpen(false)}
-            aria-label="Close sidebar">
-            ✕
-          </button>
-          <nav className="flex flex-col space-y-4">
-            <Link href="/" className="hover:bg-gray-400 p-2 rounded transition duration-300">
-              Оценки
-            </Link>
-            <Link
-              href="/suggestions"
-              className="hover:bg-gray-400 p-2 rounded transition duration-300">
-              Замечания и предложения
-            </Link>
-          </nav>
-        </aside>
+          className="fixed inset-y-0 left-0 bg-blue-600 text-white p-4 z-20 flex flex-col space-y-4 md:hidden transition-transform duration-300 transform translate-x-0 w-1/2">
+          <div className="flex justify-between items-center">
+            <Image src="/logo.png" alt="Logo" width={35} height={35} />
+            <button
+              onClick={() => setIsSidebarOpen(false)}
+              className="text-white hover:text-gray-200 transition duration-300"
+              aria-label="Close sidebar">
+              ✕
+            </button>
+          </div>
+          <Link href="/" className="hover:bg-blue-700 p-2 rounded transition duration-300">
+            Оценки
+          </Link>
+          <Link
+            href="/suggestions"
+            className="hover:bg-blue-700 p-2 rounded transition duration-300">
+            Замечания и предложения
+          </Link>
+        </div>
       )}
     </header>
   );
